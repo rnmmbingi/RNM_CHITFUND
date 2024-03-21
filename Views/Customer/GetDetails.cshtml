@@ -1,0 +1,96 @@
+﻿@model RNM_CHITFUND.Models.tbl_Cust
+
+@{
+    ViewBag.Title = "GetDetails";
+}
+
+<h2 align="center">:: Customer Profile ::</h2>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Customer ID")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cust_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cust_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Surname")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cust_Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Father")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cust_Father)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Gender")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Address")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Addres)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Mobile")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobile_1)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Alt Mobile")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobile_2)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Reference")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Refer_By)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Reference Mobile")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Refer_Mobile)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Cust_ID },new { @class="btn btn-primary"}) |
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success" })
+</p>

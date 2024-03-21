@@ -1,0 +1,85 @@
+﻿@model IEnumerable<RNM_CHITFUND.Models.tbl_MonthlyPayment>
+
+@{
+    ViewBag.Title = "PaymentList";
+}
+
+<h3 align="center">:: Customer Payment List ::</h3>
+
+<p>
+    @Html.ActionLink("New Payment", "Index", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr class="bg-primary">
+        <th>
+            @Html.DisplayNameFor(model => model.Enroll_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cust_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Chitt_ID)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.MonthOfPament)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Recieved_Amt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Due_Amt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Recieved_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModeOfPayment)
+        </th>
+        <th>
+
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Enroll_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cust_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Chitt_ID)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.MonthOfPament)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Recieved_Amt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Due_Amt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Recieved_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModeOfPayment)
+            </td>
+            <td>
+            </td>
+
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>*@
+        </tr>
+    }
+
+</table>

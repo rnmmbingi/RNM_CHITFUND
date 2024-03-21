@@ -1,0 +1,52 @@
+﻿@model IEnumerable<RNM_CHITFUND.ViewModels.DueCustListVM>
+@{
+    ViewBag.Title = "DuePaymentList_ByMonth";
+}
+<br />
+<h3>  Payment Dues for <b>"@ViewBag.chID" </b> scheme of month : <b>"@ViewBag.Month" </b></h3>
+
+<table class="table" style="width:50%;">
+    <tr class="bg-primary">
+        <th>
+            @Html.DisplayName("Sl No")
+        </th>
+        <th>
+            @Html.DisplayName("Chitti ID")
+        </th>
+        <th>
+            @Html.DisplayName("Customer ID")
+        </th>
+        <th>
+            @Html.DisplayName("Enrollment ID")
+        </th>
+        <th>
+            @Html.DisplayName("Customer Name")
+        </th>
+    </tr>
+    @{ int sno = 1; }
+    @foreach (var Cust in Model)
+    {
+        <tr>
+            <td>
+                @sno
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Cust.Chitt_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Cust.Cust_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Cust.Enroll_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Cust.CustName)
+            </td>
+
+        </tr>
+        sno++;
+
+    }
+
+</table>
+

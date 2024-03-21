@@ -1,0 +1,48 @@
+﻿@model RNM_CHITFUND.ViewModels.EnrollChittiVM
+
+@{
+    ViewBag.Title = "GetSchemesForAction";
+}
+
+<h2>GetSchemesForAction</h2>
+<div>
+    @Html.HiddenFor(model => model.Chitt_ID, Model.Chitt_ID)
+    @using (Html.BeginForm("GetSchemesForAction", "Payment"))
+    {
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    @Html.Label("Chitt Scheme", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(model => model.Chitt_ID, Model.ChittiSchemes, "-- Select Scheme --", new { @class = "form-control form-select", @onchange = "getCustomers(this.value)", @id = "ChitiID" })
+                        @Html.ValidationMessageFor(model => model.Chitt_ID, "", new { @class = "text-danger" })
+                        <input type="submit" value="Submit" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div id="listContainer">
+        <!-- Display the list here using a partial view -->
+        @Html.Partial("_ListPartial")
+        }
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script>
+    $(function () {
+        $('form').submit(function (e) {
+            e.preventDefault();
+
+            // Use AJAX to update the list based on the selected value
+            $.ajax({
+                url: '@Url.Action("PayAuctionAmount", "Payment")',
+                type: 'POST',
+                data: { selectedValue: $('#ChitiID').val() },
+                success: function (data) {
+                    $('#listContainer').html(data);
+                }
+            });
+        });
+    });
+        </script>
+    </div>

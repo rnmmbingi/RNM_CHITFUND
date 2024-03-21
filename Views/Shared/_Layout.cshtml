@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - RNM Chitfund</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>*@
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    
+    <header class="header">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <img src="~/Content/Images/logo4.png" style="height:60px;width:100px;" />
+                </li>
+            </ul>
+            <div class="container">
+                <div class="navbar-header" style="height:60px">
+
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    @Html.ActionLink("RNM Chit Fund", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <div class="row">
+                        <div class="col-6">
+                            <div>
+                                <ul class="nav navbar-nav">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <li>@Html.ActionLink("Customer", "Index", "Customer")</li>
+                                        <li>
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Chitti-Schemes
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li>
+                                                    @Html.ActionLink("Chitti-Schemes", "Index", "ChittiScheme", null, new { @class = "dropdown-item" })
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Enrollment", "Index", "Admin", null, new { @class = "dropdown-item" })
+                                                </li>
+                                                <li>
+                                                    @*@Html.ActionLink("Pay Chiti Amount", "PaymentAmount", "Payment", null, new { @class = "dropdown-item" })*@
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Payments
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <li>
+                                                    @Html.ActionLink("Payment", "Index", "Payment", null, new { @class = "dropdown-item" })
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Dues", "GetDueCustList", "Payment", null, new { @class = "dropdown-item" })
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Pay Auction Amount", "GetSchemesForAction", "Payment", null, new { @class = "dropdown-item" })
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Payment Enquiry", "PaymentEnquiry", "Payment", null, new { @class = "dropdown-item" })
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                    }
+                                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                </ul>
+                                <ul class="nav navbar-nav navbar-right">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <li><a>Welcome to : @User.Identity.Name </a></li>
+                                        <li>@Html.ActionLink("LogOut", "Logout", "Account")</li>
+                                    }
+                                    else
+                                    {
+                                        <li>@Html.ActionLink("LogIn", "Login", "Account")</li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    <footer class="footer" align="center">
+        <p><b>&copy; @DateTime.Now.Year - RNM Chit Fund Group</b></p>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

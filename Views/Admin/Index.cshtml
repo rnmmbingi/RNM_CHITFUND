@@ -1,0 +1,60 @@
+﻿@model RNM_CHITFUND.ViewModels.ChittiIDVM
+
+@{
+    ViewBag.Title = "Index";
+}
+<h3 align="center">:: Customer Enrollment Details ::</h3>
+
+<div>
+    <div>
+        <div class="row">
+            <div class="col-lg-6">
+                <p>
+                    @Html.ActionLink("Customer New Enrollment", "EnrollChitti", null, new { @class = "btn btn-success" })
+                </p>
+            </div>
+            <div class="col-lg-6" align="end">
+
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div>
+        @Html.HiddenFor(model => model.Chitt_ID, Model.Chitt_ID)
+        @using (Html.BeginForm("GetEnrollList", "Admin"))
+        {
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    @Html.Label("Chitt Scheme", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(model => model.Chitt_ID, Model.ChittiSchemes, "-- Select Scheme --", new { @class = "form-control form-select", @onchange = "getCustomers(this.value)", @id = "ChitiID" })
+                        @Html.ValidationMessageFor(model => model.Chitt_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                @Html.ActionLink("Get this Scheme Customers", "GetEnrollList", "Admin", new { cid = "OtherValue" }, new { @class = "btn btn-primary", @id = "action-link-id" }) |
+                @Html.ActionLink("Get Due Customer List", "GetDueCustList", "Payment", new { cid = "OtherValue" }, new { @class = "btn btn-primary", @id = "action-link-id" })
+            </div>
+            @* Dues *@
+            <div class="col-lg-5">
+               
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+<script>
+    function getCustomers(custId) {
+
+        $("#action-link-id").attr('href', function () {
+            return this.href.replace("OtherValue", custId);
+
+
+        });
+    }
+
+
+</script>

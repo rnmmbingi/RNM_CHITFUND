@@ -1,0 +1,141 @@
+﻿body {
+    background-image: url('Images/bg2.jpg');
+    background-repeat: no-repeat;    
+    margin: 0;
+    padding-top: 90px;
+    padding-bottom: 50px;      
+    background-size: cover;
+    font-family:Cambria;
+}
+
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    width:90%
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.bg-div {
+    
+    box-shadow: rgba(50, 50, 93, 1) 0px 30px 100px -20px, rgba(0, 0, 0, 0.3) 1px 30px 60px -30px;
+    color:black;
+    background-color:rgb(8 246 225 / 0.30);
+    border-radius:20px;
+    padding:15px;
+    margin:15px;
+}
+.bg-home-div-card {
+    box-shadow: rgba(50, 50, 93, 1) 0px 30px 100px -20px, rgba(0, 0, 0, 0.3) 1px 30px 60px -30px;
+    color: black;
+    background-color:rgb(251 247 247 / 0.30);
+    border-radius: 15px;
+    padding: 10px;
+    margin: 7px;
+    height: 250px;
+    width: 429.7px;
+}
+
+.bg-div-card {
+    
+    box-shadow: rgba(50, 50, 93, 1) 0px 30px 100px -20px, rgba(0, 0, 0, 0.3) 1px 30px 60px -30px;
+    color: black;
+    background-color:rgb(8 24 163 / 0.4);
+    border-radius: 15px;
+    padding: 10px;
+    margin:5px;
+    height:230px;
+    width:435px;
+}
+.contactus-div {
+    background-color: rgb(252 250 250 / 0.40);
+    height: 550px; 
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 1) 0px 30px 100px -20px, rgba(0, 0, 0, 0.3) 1px 30px 60px -30px;
+}
+
+
+.contactus-div-contact {
+    background-color: rgb(8 16 253 / 0.55);
+    color: white;
+    height: 550px;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 1) 0px 30px 100px -20px, rgba(0, 0, 0, 0.3) 1px 30px 60px -30px;
+}
+.login-div {
+    background-color: lightcyan;
+    background-image: url('../../Content/Images/login.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 1) 0px 30px 100px -20px, rgba(0, 0, 0, 0.3) 1px 30px 60px -30px;
+}
+.signup-div {
+    background-color: lightcyan;
+    background-image: url('../../Content/Images/login2.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 1) 0px 30px 100px -20px, rgba(0, 0, 0, 0.3) 1px 30px 60px -30px;
+}
+
+.bg-nav {
+    opacity: 100%;
+    box-shadow: rgba(50, 50, 93, 1) 0px 30px 100px -20px, rgba(0, 0, 0, 0.3) 1px 30px 60px -30px; 
+}
+.text-white{
+    color:white;
+}
+
+.logo-img {
+    height: 200px;
+    width: 250px;
+    box-shadow: rgba(50, 40, 63, 10) 0px 30px 100px -20px, rgba(0, 0, 0, 0.5) 1px 30px 60px -30px;
+}
+.slider-div {
+    height: 230px;    
+    box-shadow: rgba(50, 50, 93, 1) 0px 30px 100px -20px, rgba(0, 0, 0, 0.3) 1px 30px 60px -30px;
+}
+.slider-img {
+    width: 100%;
+    height: 300px;
+    opacity: 100%;
+}
+

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<RNM_CHITFUND.ViewModels.CustPaymentListVM>
+
+@{
+    ViewBag.Title = "CustPaymentList";
+}
+
+<h2>Payment List</h2>
+
+<p>
+    @Html.ActionLink("New Payment", "Index", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Sl No")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.Cust_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.Cust_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.Cust_Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment.Chitt_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment.Enroll_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment.MonthOfPament)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment.Recieved_Amt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment.Due_Amt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment.Recieved_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment.ModeOfPayment)
+        </th>
+
+    </tr>
+    @{ int sno = 1; }
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @sno
+        </td>
+        <td>
+            @Html.DisplayFor(modelitem => item.Customer.Cust_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.Cust_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.Cust_Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment.Chitt_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment.Enroll_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment.MonthOfPament)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment.Recieved_Amt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment.Due_Amt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment.Recieved_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment.ModeOfPayment)
+        </td>
+    </tr>
+    sno++;
+}
+
+</table>

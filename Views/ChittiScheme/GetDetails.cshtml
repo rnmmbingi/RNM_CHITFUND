@@ -1,0 +1,121 @@
+﻿@model RNM_CHITFUND.Models.tbl_Chitti
+
+@{
+    ViewBag.Title = "GetDetails";
+}
+
+<h2>:: "<b>@Model.Chitt_ID</b>" - Chitti Information ::</h2>
+<hr />
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Chitt ID")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Chitt_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Chitt Value")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Chitt_Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Months)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Months)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Installment Amount")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Installmt_Amt)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Chitt Type")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Chitt_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Members)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Members)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Payable Amount")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payable_Amt)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Auction Amount")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Auction_Amt)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Commission Amount")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commission_Amt)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Date Of Auction")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfAuction)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Date Of Start")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Date Of End")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfEnd)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Members Count For Chitti")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Members_Count_For_Chitti)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Chitt_ID }, new { @class = "btn btn-success" }) |
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+</p>

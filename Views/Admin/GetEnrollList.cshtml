@@ -1,0 +1,64 @@
+﻿@model IEnumerable<RNM_CHITFUND.ViewModels.EnrollCustListVM>
+
+@{
+    ViewBag.Title = "GetEnrollList";
+}
+
+<h2>:: Enroll List ::</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr class="bg-info">
+        <th>
+            @Html.DisplayNameFor(model => model.EnrollCustList.Enroll_ID)
+        </th>
+        <th>
+            @Html.DisplayName("Customers ID")
+        </th>
+        <th>
+            @Html.DisplayName("Customer Name")
+        </th>
+        <th>
+            @Html.DisplayName("Surname")
+        </th>
+        <th>
+            @Html.DisplayName("Chitt ID")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnrollCustList.IsLifted)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollCustList.Enroll_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customers.Cust_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customers.Cust_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customers.Cust_Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollCustList.Chitt_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollCustList.IsLifted)
+            </td>
+            <td>
+                @Html.ActionLink("Pay Auction Amount", "PayAuctionAmount", "Payment", new { id = item.EnrollCustList.Enroll_ID }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.EnrollCustList.Enroll_ID }, new { @class = "btn btn-success" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.EnrollCustList.Enroll_ID }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

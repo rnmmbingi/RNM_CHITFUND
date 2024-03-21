@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+
+
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
+<div class="container">
+    <div>
+        <div class="row">
+            <div class="col-md-4 p-5 contactus-div-contact">
+                <br />
+                <div class="mb-3 p-5">
+                    <img src="~/Content/Images/logo4.png" class="logo-img" />
+                </div>
+                <h3 class="color--white mb-5">Get in Touch</h3>
+
+                <ul class="list-style--none position-relative z-index-101">
+                    <li class="mb-4 pl-4">
+                        <span class="position-absolute"><i class="fas fa-envelope"></i></span> rnbingi.ramesh@gmail.com
+                    </li>
+                    <li class="mb-4 pl-4">
+                        <span class="position-absolute"><i class="fas fa-phone"></i></span> (+91)-9440449548
+                    </li>
+                    <li class="mb-4 pl-4">
+                        <span class="position-absolute"><i class="fas fa-map-marker-alt"></i></span> RNM Chitfund Group.<br /><br />
+                        H.No.:1-8-510/E/41/D/2<br />
+                        Near A to Z Function Hall<br />
+                        Prkash Nagar<br />
+                        Begumpet<br />
+                        Hyderabad 500016<br />
+                        <br />
+
+                        <div class="mb-3">
+                            <a href="https://www.google.com/maps" target="_blank" style="color:white; margin-top:20px;">Get directions <i class="link__icon fa fa-directions"></i></a>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="col-lg-7 p-5 contactus-div">
+                <form action="#" class="contact-form form-validate" novalidate="novalidate">
+                    <h3 align="center">Contact Us</h3>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                                <label class="required-field" for="firstName">First Name</label>
+                                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Name">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                                <label class="required-field" for="email">Email</label>
+                                <input type="text" class="form-control" id="email" name="email" placeholder="abc@xyz.com">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="(+91)-9876543210">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 mb-3">
+                            <div class="form-group">
+                                <label class="required-field" for="message">How can we help?</label>
+                                <textarea class="form-control" id="message" name="message" rows="4" placeholder="Hi there, I would like to....."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 mb-3">
+                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <!-- End Contact Form Wrapper -->
+
+        </div>
+    </div>
+</div>

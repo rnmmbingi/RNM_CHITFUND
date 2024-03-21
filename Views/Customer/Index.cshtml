@@ -1,0 +1,123 @@
+﻿@model IEnumerable<RNM_CHITFUND.Models.tbl_Cust>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 align="center">:: Chit Fund Customers List ::</h2>
+<hr />
+<div>
+    <div>
+        <div class="row">
+            <div class="col-lg-6">
+                <p>
+                    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+                </p>
+            </div>
+            <div align="end" class="col-lg-6">
+                <p>
+                    @using (Html.BeginForm("ExportToPdf", "Customer", FormMethod.Post))
+                    {
+                        <input type="hidden" name="ExportData" />
+                         <input type="submit" id="btnSubmit" value="Download PDF" class = "btn btn-danger" />
+                    }
+
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="printData">
+        <table class="table table-bordered black">
+            <tr class="bg-primary">
+                <th>
+                    @Html.DisplayName("Sl No")
+                </th>
+                <th>
+                    @Html.DisplayName("Customer ID")
+                </th>
+                <th>
+                    @Html.DisplayName("Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Surname")
+                </th>
+                <th>
+                    @Html.DisplayName("Father")
+                </th>
+                <th>
+                    @Html.DisplayName("Gender")
+                </th>
+                <th>
+                    @Html.DisplayName("Address")
+                </th>
+                <th>
+                    @Html.DisplayName("Mobile")
+                </th>
+                <th>
+                    @Html.DisplayName("Alt Mobile")
+                </th>
+                <th>
+                    @Html.DisplayName("Reference")
+                </th>
+                <th>
+                    @Html.DisplayName("Reference Mobile")
+                </th>
+                <th></th>
+            </tr>
+            @{ int sno = 1; } 
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @sno
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cust_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cust_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cust_Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cust_Father)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Addres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mobile_1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mobile_2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Refer_By)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Refer_Mobile)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Cust_ID }, new { @class = "btn btn-primary" })  |
+                    @Html.ActionLink("Details", "GetDetails", new { id = item.Cust_ID }, new { @class = "btn btn-success" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Cust_ID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+             sno++;
+            }
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+        $(function () {
+            $("#btnSubmit").click(function () {
+                $("input[name='ExportData']").val($("#printData").html());
+            });
+        });
+</script>

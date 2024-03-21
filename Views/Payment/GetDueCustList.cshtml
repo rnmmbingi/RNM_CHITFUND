@@ -1,0 +1,78 @@
+﻿@model RNM_CHITFUND.ViewModels.GetDueCustVM
+@{
+    ViewBag.Title = "GetDueCustList";
+}
+
+<h2>GetDueCustList</h2>
+
+<div>
+    @Html.HiddenFor(model => model.Chitt_ID, Model.Chitt_ID)
+    @using (Html.BeginForm("GetDueCustList", "Payment"))
+    {
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.Label("Chitt Scheme", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Chitt_ID, Model.ChittiSchemes, "-- Select Scheme --", new { @class = "form-control form-select", @onchange = "getCustomers(this.value)", @id = "ChitiID" })
+                    @Html.ValidationMessageFor(model => model.Chitt_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Month : ", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model=>model.Month, new List<SelectListItem>
+                            {
+                                 new SelectListItem{ Text="JAN", Value = "01" },
+                                 new SelectListItem{ Text="FEB", Value = "02" },
+                                 new SelectListItem{ Text="MAR", Value = "03" },
+                                 new SelectListItem{ Text="APR", Value = "04" },
+                                 new SelectListItem{ Text="MAY", Value = "05" },
+                                 new SelectListItem{ Text="JUN", Value = "06" },
+                                 new SelectListItem{ Text="JUL", Value = "07" },
+                                 new SelectListItem{ Text="AUG", Value = "08" },
+                                 new SelectListItem{ Text="SEP", Value = "09" },
+                                 new SelectListItem{ Text="OCT", Value = "10" },
+                                 new SelectListItem{ Text="NOV", Value = "11" },
+                                 new SelectListItem{ Text="DEC", Value = "12" }
+
+                            }, "- Select Month -", new { @class = "form-control form-select" })
+                    @Html.ValidationMessageFor(model => model.Month, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Year : ", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model=>model.Year, new List<SelectListItem>
+                            {
+                                 new SelectListItem{ Text="2023", Value = "2023" },
+                                 new SelectListItem{ Text="2024", Value = "2024" },
+                                 new SelectListItem{ Text="2025", Value = "2025" },
+                                 new SelectListItem{ Text="2026", Value = "2026" },
+                                 new SelectListItem{ Text="2027", Value = "2027" }
+
+                            }, "- Select Year -", new { @class = "form-control form-select" })
+                    @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <input type="submit" value="Get" />
+            @*@Html.ActionLink("Get this Scheme Customers", "GetEnrollList", "Admin", new { cid = "OtherValue" }, new { @class = "btn btn-primary", @id = "action-link-id" })*@ |
+           @* @Html.ActionLink("Get Due Customer List", "DuePaymentList_ByMonth", "Payment", new { cid = "OtherValue", month = Model.Month, year = Model.Year}, new { @class = "btn btn-primary", @id = "action-link-id" })*@
+        </div>
+    </div>
+
+    }
+</div>
+<script>
+    function getCustomers(cId) {
+
+        $("#action-link-id").attr('href', function () {
+            return this.href.replace("OtherValue", cId);
+
+        });
+    }
+
+
+</script>

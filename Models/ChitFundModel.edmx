@@ -1,0 +1,789 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RNM_CHITFUNDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_Chitti">
+          <Key>
+            <PropertyRef Name="Chitt_ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Chitt_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Chitt_Value" Type="money" Nullable="false" />
+          <Property Name="Months" Type="tinyint" />
+          <Property Name="Installmt_Amt" Type="money" />
+          <Property Name="Chitt_Type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Members" Type="int" />
+          <Property Name="Payable_Amt" Type="money" />
+          <Property Name="Auction_Amt" Type="money" />
+          <Property Name="Commission_Amt" Type="money" />
+          <Property Name="DateOfAuction" Type="date" />
+          <Property Name="DateOfStart" Type="date" />
+          <Property Name="DateOfEnd" Type="date" />
+          <Property Name="Members_Count_For_Chitti" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Cust">
+          <Key>
+            <PropertyRef Name="Cust_ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cust_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cust_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cust_Surname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cust_Father" Type="varchar" MaxLength="50" />
+          <Property Name="Gender" Type="char" MaxLength="6" />
+          <Property Name="Addres" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Mobile_1" Type="bigint" Nullable="false" />
+          <Property Name="Mobile_2" Type="bigint" />
+          <Property Name="Photo_path" Type="varchar" MaxLength="50" />
+          <Property Name="Refer_By" Type="varchar" MaxLength="20" />
+          <Property Name="Refer_Mobile" Type="bigint" />
+        </EntityType>
+        <EntityType Name="tbl_Enroll_Cust">
+          <Key>
+            <PropertyRef Name="Enroll_ID" />
+          </Key>
+          <Property Name="Enroll_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cust_ID" Type="varchar" MaxLength="50" />
+          <Property Name="Chitt_ID" Type="varchar" MaxLength="50" />
+          <Property Name="IsLifted" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tbl_LiftedCustomer">
+          <Key>
+            <PropertyRef Name="Enroll_ID" />
+            <PropertyRef Name="Cust_ID" />
+            <PropertyRef Name="Chitt_ID" />
+          </Key>
+          <Property Name="Enroll_ID" Type="int" Nullable="false" />
+          <Property Name="Cust_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Chitt_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lifted_Date" Type="date" />
+          <Property Name="Paid_Amt" Type="money" />
+          <Property Name="Surity" Type="varchar" MaxLength="20" />
+          <Property Name="Witness1" Type="varchar" MaxLength="20" />
+          <Property Name="Witness2" Type="varchar" MaxLength="20" />
+          <Property Name="ModeOfPayment" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tbl_MonthlyPayment">
+          <Key>
+            <PropertyRef Name="Enroll_ID" />
+            <PropertyRef Name="Cust_ID" />
+            <PropertyRef Name="Chitt_ID" />
+            <PropertyRef Name="MonthOfPament" />
+          </Key>
+          <Property Name="Enroll_ID" Type="int" Nullable="false" />
+          <Property Name="Cust_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Chitt_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Recieved_Amt" Type="money" />
+          <Property Name="Due_Amt" Type="money" Nullable="false" />
+          <Property Name="Recieved_Date" Type="date" />
+          <Property Name="ModeOfPayment" Type="varchar" MaxLength="20" />
+          <Property Name="MonthOfPament" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="20" />
+          <Property Name="UserName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Phone" Type="bigint" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tbl_Enrol__Chitt__29572725">
+          <End Role="tbl_Chitti" Type="Self.tbl_Chitti" Multiplicity="0..1" />
+          <End Role="tbl_Enroll_Cust" Type="Self.tbl_Enroll_Cust" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Chitti">
+              <PropertyRef Name="Chitt_ID" />
+            </Principal>
+            <Dependent Role="tbl_Enroll_Cust">
+              <PropertyRef Name="Chitt_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Enrol__Cust___286302EC">
+          <End Role="tbl_Cust" Type="Self.tbl_Cust" Multiplicity="0..1" />
+          <End Role="tbl_Enroll_Cust" Type="Self.tbl_Enroll_Cust" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cust">
+              <PropertyRef Name="Cust_ID" />
+            </Principal>
+            <Dependent Role="tbl_Enroll_Cust">
+              <PropertyRef Name="Cust_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Lifte__Chitt__34C8D9D1">
+          <End Role="tbl_Chitti" Type="Self.tbl_Chitti" Multiplicity="1" />
+          <End Role="tbl_LiftedCustomer" Type="Self.tbl_LiftedCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Chitti">
+              <PropertyRef Name="Chitt_ID" />
+            </Principal>
+            <Dependent Role="tbl_LiftedCustomer">
+              <PropertyRef Name="Chitt_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Lifte__Cust___33D4B598">
+          <End Role="tbl_Cust" Type="Self.tbl_Cust" Multiplicity="1" />
+          <End Role="tbl_LiftedCustomer" Type="Self.tbl_LiftedCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cust">
+              <PropertyRef Name="Cust_ID" />
+            </Principal>
+            <Dependent Role="tbl_LiftedCustomer">
+              <PropertyRef Name="Cust_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Lifte__Enrol__32E0915F">
+          <End Role="tbl_Enroll_Cust" Type="Self.tbl_Enroll_Cust" Multiplicity="1" />
+          <End Role="tbl_LiftedCustomer" Type="Self.tbl_LiftedCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Enroll_Cust">
+              <PropertyRef Name="Enroll_ID" />
+            </Principal>
+            <Dependent Role="tbl_LiftedCustomer">
+              <PropertyRef Name="Enroll_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Month__Chitt__4AB81AF0">
+          <End Role="tbl_Chitti" Type="Self.tbl_Chitti" Multiplicity="1" />
+          <End Role="tbl_MonthlyPayment" Type="Self.tbl_MonthlyPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Chitti">
+              <PropertyRef Name="Chitt_ID" />
+            </Principal>
+            <Dependent Role="tbl_MonthlyPayment">
+              <PropertyRef Name="Chitt_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Month__Cust___4BAC3F29">
+          <End Role="tbl_Cust" Type="Self.tbl_Cust" Multiplicity="1" />
+          <End Role="tbl_MonthlyPayment" Type="Self.tbl_MonthlyPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cust">
+              <PropertyRef Name="Cust_ID" />
+            </Principal>
+            <Dependent Role="tbl_MonthlyPayment">
+              <PropertyRef Name="Cust_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Month__Enrol__4CA06362">
+          <End Role="tbl_Enroll_Cust" Type="Self.tbl_Enroll_Cust" Multiplicity="1" />
+          <End Role="tbl_MonthlyPayment" Type="Self.tbl_MonthlyPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Enroll_Cust">
+              <PropertyRef Name="Enroll_ID" />
+            </Principal>
+            <Dependent Role="tbl_MonthlyPayment">
+              <PropertyRef Name="Enroll_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GenerateChittiID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="val" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Pro_DuePayment_Cust_List_ByMonthYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="chitti_Id" Type="varchar" Mode="In" />
+          <Parameter Name="MonthOfPament" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Pro_GetChittiSchemeByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="chit_ID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Pro_InsertChit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="c_value" Type="money" Mode="In" />
+          <Parameter Name="months" Type="tinyint" Mode="In" />
+          <Parameter Name="instl_amt" Type="money" Mode="In" />
+          <Parameter Name="c_type" Type="varchar" Mode="In" />
+          <Parameter Name="members" Type="int" Mode="In" />
+          <Parameter Name="payableAmt" Type="money" Mode="In" />
+          <Parameter Name="auctionAmt" Type="money" Mode="In" />
+          <Parameter Name="commAmt" Type="money" Mode="In" />
+          <Parameter Name="dateAuction" Type="date" Mode="In" />
+          <Parameter Name="datestart" Type="date" Mode="In" />
+        </Function>
+        <Function Name="Pro_InsertCust" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Cust_name" Type="varchar" Mode="In" />
+          <Parameter Name="surname" Type="varchar" Mode="In" />
+          <Parameter Name="father" Type="varchar" Mode="In" />
+          <Parameter Name="gender" Type="char" Mode="In" />
+          <Parameter Name="addr" Type="varchar" Mode="In" />
+          <Parameter Name="mob1" Type="bigint" Mode="In" />
+          <Parameter Name="mob2" Type="bigint" Mode="In" />
+          <Parameter Name="refBy" Type="varchar" Mode="In" />
+          <Parameter Name="refMob" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="Pro_InsertEnrollScheme" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Cust_ID" Type="varchar" Mode="In" />
+          <Parameter Name="Chitt_ID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="pro_InsertLiftedCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="enrolId" Type="int" Mode="In" />
+          <Parameter Name="custId" Type="varchar" Mode="In" />
+          <Parameter Name="chitiId" Type="varchar" Mode="In" />
+          <Parameter Name="liftedDate" Type="date" Mode="In" />
+          <Parameter Name="paidAmount" Type="money" Mode="In" />
+          <Parameter Name="surity" Type="varchar" Mode="In" />
+          <Parameter Name="witness1" Type="varchar" Mode="In" />
+          <Parameter Name="witness2" Type="varchar" Mode="In" />
+          <Parameter Name="modeofPay" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Pro_RegisterUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="surname" Type="varchar" Mode="In" />
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="phone" Type="bigint" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Pro_UpdateChit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="chit_ID" Type="varchar" Mode="In" />
+          <Parameter Name="c_value" Type="money" Mode="In" />
+          <Parameter Name="months" Type="tinyint" Mode="In" />
+          <Parameter Name="instl_amt" Type="money" Mode="In" />
+          <Parameter Name="c_type" Type="varchar" Mode="In" />
+          <Parameter Name="members" Type="int" Mode="In" />
+          <Parameter Name="payableAmt" Type="money" Mode="In" />
+          <Parameter Name="auctionAmt" Type="money" Mode="In" />
+          <Parameter Name="commAmt" Type="money" Mode="In" />
+          <Parameter Name="dateAuction" Type="date" Mode="In" />
+          <Parameter Name="datestart" Type="date" Mode="In" />
+        </Function>
+        <EntityContainer Name="RNM_CHITFUNDModelStoreContainer">
+          <EntitySet Name="tbl_Chitti" EntityType="Self.tbl_Chitti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Cust" EntityType="Self.tbl_Cust" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Enroll_Cust" EntityType="Self.tbl_Enroll_Cust" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_LiftedCustomer" EntityType="Self.tbl_LiftedCustomer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_MonthlyPayment" EntityType="Self.tbl_MonthlyPayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Users" EntityType="Self.tbl_Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tbl_Enrol__Chitt__29572725" Association="Self.FK__tbl_Enrol__Chitt__29572725">
+            <End Role="tbl_Chitti" EntitySet="tbl_Chitti" />
+            <End Role="tbl_Enroll_Cust" EntitySet="tbl_Enroll_Cust" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Enrol__Cust___286302EC" Association="Self.FK__tbl_Enrol__Cust___286302EC">
+            <End Role="tbl_Cust" EntitySet="tbl_Cust" />
+            <End Role="tbl_Enroll_Cust" EntitySet="tbl_Enroll_Cust" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Lifte__Chitt__34C8D9D1" Association="Self.FK__tbl_Lifte__Chitt__34C8D9D1">
+            <End Role="tbl_Chitti" EntitySet="tbl_Chitti" />
+            <End Role="tbl_LiftedCustomer" EntitySet="tbl_LiftedCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Lifte__Cust___33D4B598" Association="Self.FK__tbl_Lifte__Cust___33D4B598">
+            <End Role="tbl_Cust" EntitySet="tbl_Cust" />
+            <End Role="tbl_LiftedCustomer" EntitySet="tbl_LiftedCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Lifte__Enrol__32E0915F" Association="Self.FK__tbl_Lifte__Enrol__32E0915F">
+            <End Role="tbl_Enroll_Cust" EntitySet="tbl_Enroll_Cust" />
+            <End Role="tbl_LiftedCustomer" EntitySet="tbl_LiftedCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Month__Chitt__4AB81AF0" Association="Self.FK__tbl_Month__Chitt__4AB81AF0">
+            <End Role="tbl_Chitti" EntitySet="tbl_Chitti" />
+            <End Role="tbl_MonthlyPayment" EntitySet="tbl_MonthlyPayment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Month__Cust___4BAC3F29" Association="Self.FK__tbl_Month__Cust___4BAC3F29">
+            <End Role="tbl_Cust" EntitySet="tbl_Cust" />
+            <End Role="tbl_MonthlyPayment" EntitySet="tbl_MonthlyPayment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Month__Enrol__4CA06362" Association="Self.FK__tbl_Month__Enrol__4CA06362">
+            <End Role="tbl_Enroll_Cust" EntitySet="tbl_Enroll_Cust" />
+            <End Role="tbl_MonthlyPayment" EntitySet="tbl_MonthlyPayment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RNM_CHITFUNDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_Chitti">
+          <Key>
+            <PropertyRef Name="Chitt_ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Chitt_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Chitt_Value" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Months" Type="Byte" />
+          <Property Name="Installmt_Amt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Chitt_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Members" Type="Int32" />
+          <Property Name="Payable_Amt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Auction_Amt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Commission_Amt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DateOfAuction" Type="DateTime" Precision="0" />
+          <Property Name="DateOfStart" Type="DateTime" Precision="0" />
+          <Property Name="DateOfEnd" Type="DateTime" Precision="0" />
+          <Property Name="Members_Count_For_Chitti" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="tbl_Enroll_Cust" Relationship="Self.FK__tbl_Enrol__Chitt__38996AB5" FromRole="tbl_Chitti" ToRole="tbl_Enroll_Cust" />
+          <NavigationProperty Name="tbl_LiftedCustomer" Relationship="Self.FK__tbl_Lifte__Chitt__440B1D61" FromRole="tbl_Chitti" ToRole="tbl_LiftedCustomer" />
+          <NavigationProperty Name="tbl_MonthlyPayment" Relationship="Self.FK__tbl_Month__Chitt__48CFD27E" FromRole="tbl_Chitti" ToRole="tbl_MonthlyPayment" />
+        </EntityType>
+        <EntityType Name="tbl_Cust">
+          <Key>
+            <PropertyRef Name="Cust_ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cust_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cust_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cust_Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cust_Father" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="Addres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mobile_1" Type="Int64" Nullable="false" />
+          <Property Name="Mobile_2" Type="Int64" />
+          <Property Name="Photo_path" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Refer_By" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Refer_Mobile" Type="Int64" />
+          <NavigationProperty Name="tbl_Enroll_Cust" Relationship="Self.FK__tbl_Enrol__Cust___37A5467C" FromRole="tbl_Cust" ToRole="tbl_Enroll_Cust" />
+          <NavigationProperty Name="tbl_LiftedCustomer" Relationship="Self.FK__tbl_Lifte__Cust___4316F928" FromRole="tbl_Cust" ToRole="tbl_LiftedCustomer" />
+          <NavigationProperty Name="tbl_MonthlyPayment" Relationship="Self.FK__tbl_Month__Cust___47DBAE45" FromRole="tbl_Cust" ToRole="tbl_MonthlyPayment" />
+        </EntityType>
+        <EntityType Name="tbl_Enroll_Cust">
+          <Key>
+            <PropertyRef Name="Enroll_ID" />
+          </Key>
+          <Property Name="Enroll_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cust_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Chitt_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsLifted" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="tbl_Chitti" Relationship="Self.FK__tbl_Enrol__Chitt__38996AB5" FromRole="tbl_Enroll_Cust" ToRole="tbl_Chitti" />
+          <NavigationProperty Name="tbl_Cust" Relationship="Self.FK__tbl_Enrol__Cust___37A5467C" FromRole="tbl_Enroll_Cust" ToRole="tbl_Cust" />
+          <NavigationProperty Name="tbl_LiftedCustomer" Relationship="Self.FK__tbl_Lifte__Enrol__4222D4EF" FromRole="tbl_Enroll_Cust" ToRole="tbl_LiftedCustomer" />
+          <NavigationProperty Name="tbl_MonthlyPayment" Relationship="Self.FK__tbl_Month__Enrol__46E78A0C" FromRole="tbl_Enroll_Cust" ToRole="tbl_MonthlyPayment" />
+        </EntityType>
+        <EntityType Name="tbl_LiftedCustomer">
+          <Key>
+            <PropertyRef Name="Enroll_ID" />
+            <PropertyRef Name="Cust_ID" />
+            <PropertyRef Name="Chitt_ID" />
+          </Key>
+          <Property Name="Enroll_ID" Type="Int32" Nullable="false" />
+          <Property Name="Cust_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Chitt_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Lifted_Date" Type="DateTime" Precision="0" />
+          <Property Name="Paid_Amt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Surity" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Witness1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Witness2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModeOfPayment" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_Chitti" Relationship="Self.FK__tbl_Lifte__Chitt__440B1D61" FromRole="tbl_LiftedCustomer" ToRole="tbl_Chitti" />
+          <NavigationProperty Name="tbl_Cust" Relationship="Self.FK__tbl_Lifte__Cust___4316F928" FromRole="tbl_LiftedCustomer" ToRole="tbl_Cust" />
+          <NavigationProperty Name="tbl_Enroll_Cust" Relationship="Self.FK__tbl_Lifte__Enrol__4222D4EF" FromRole="tbl_LiftedCustomer" ToRole="tbl_Enroll_Cust" />
+        </EntityType>
+        <EntityType Name="tbl_MonthlyPayment">
+          <Key>
+            <PropertyRef Name="Enroll_ID" />
+            <PropertyRef Name="Cust_ID" />
+            <PropertyRef Name="Chitt_ID" />
+            <PropertyRef Name="MonthOfPament" />
+          </Key>
+          <Property Name="Enroll_ID" Type="Int32" Nullable="false" />
+          <Property Name="Cust_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Chitt_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Recieved_Amt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Due_Amt" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Recieved_Date" Type="DateTime" Precision="0" />
+          <Property Name="ModeOfPayment" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_Chitti" Relationship="Self.FK__tbl_Month__Chitt__48CFD27E" FromRole="tbl_MonthlyPayment" ToRole="tbl_Chitti" />
+          <NavigationProperty Name="tbl_Cust" Relationship="Self.FK__tbl_Month__Cust___47DBAE45" FromRole="tbl_MonthlyPayment" ToRole="tbl_Cust" />
+          <NavigationProperty Name="tbl_Enroll_Cust" Relationship="Self.FK__tbl_Month__Enrol__46E78A0C" FromRole="tbl_MonthlyPayment" ToRole="tbl_Enroll_Cust" />
+          <Property Name="MonthOfPament" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__tbl_Enrol__Chitt__38996AB5">
+          <End Role="tbl_Chitti" Type="Self.tbl_Chitti" Multiplicity="0..1" />
+          <End Role="tbl_Enroll_Cust" Type="Self.tbl_Enroll_Cust" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Chitti">
+              <PropertyRef Name="Chitt_ID" />
+            </Principal>
+            <Dependent Role="tbl_Enroll_Cust">
+              <PropertyRef Name="Chitt_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Lifte__Chitt__440B1D61">
+          <End Role="tbl_Chitti" Type="Self.tbl_Chitti" Multiplicity="1" />
+          <End Role="tbl_LiftedCustomer" Type="Self.tbl_LiftedCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Chitti">
+              <PropertyRef Name="Chitt_ID" />
+            </Principal>
+            <Dependent Role="tbl_LiftedCustomer">
+              <PropertyRef Name="Chitt_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Month__Chitt__48CFD27E">
+          <End Role="tbl_Chitti" Type="Self.tbl_Chitti" Multiplicity="1" />
+          <End Role="tbl_MonthlyPayment" Type="Self.tbl_MonthlyPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Chitti">
+              <PropertyRef Name="Chitt_ID" />
+            </Principal>
+            <Dependent Role="tbl_MonthlyPayment">
+              <PropertyRef Name="Chitt_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Enrol__Cust___37A5467C">
+          <End Role="tbl_Cust" Type="Self.tbl_Cust" Multiplicity="0..1" />
+          <End Role="tbl_Enroll_Cust" Type="Self.tbl_Enroll_Cust" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cust">
+              <PropertyRef Name="Cust_ID" />
+            </Principal>
+            <Dependent Role="tbl_Enroll_Cust">
+              <PropertyRef Name="Cust_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Lifte__Cust___4316F928">
+          <End Role="tbl_Cust" Type="Self.tbl_Cust" Multiplicity="1" />
+          <End Role="tbl_LiftedCustomer" Type="Self.tbl_LiftedCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cust">
+              <PropertyRef Name="Cust_ID" />
+            </Principal>
+            <Dependent Role="tbl_LiftedCustomer">
+              <PropertyRef Name="Cust_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Month__Cust___47DBAE45">
+          <End Role="tbl_Cust" Type="Self.tbl_Cust" Multiplicity="1" />
+          <End Role="tbl_MonthlyPayment" Type="Self.tbl_MonthlyPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Cust">
+              <PropertyRef Name="Cust_ID" />
+            </Principal>
+            <Dependent Role="tbl_MonthlyPayment">
+              <PropertyRef Name="Cust_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Lifte__Enrol__4222D4EF">
+          <End Role="tbl_Enroll_Cust" Type="Self.tbl_Enroll_Cust" Multiplicity="1" />
+          <End Role="tbl_LiftedCustomer" Type="Self.tbl_LiftedCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Enroll_Cust">
+              <PropertyRef Name="Enroll_ID" />
+            </Principal>
+            <Dependent Role="tbl_LiftedCustomer">
+              <PropertyRef Name="Enroll_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_Month__Enrol__46E78A0C">
+          <End Role="tbl_Enroll_Cust" Type="Self.tbl_Enroll_Cust" Multiplicity="1" />
+          <End Role="tbl_MonthlyPayment" Type="Self.tbl_MonthlyPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Enroll_Cust">
+              <PropertyRef Name="Enroll_ID" />
+            </Principal>
+            <Dependent Role="tbl_MonthlyPayment">
+              <PropertyRef Name="Enroll_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RNM_CHITFUNDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_Chitti" EntityType="Self.tbl_Chitti" />
+          <EntitySet Name="tbl_Cust" EntityType="Self.tbl_Cust" />
+          <EntitySet Name="tbl_Enroll_Cust" EntityType="Self.tbl_Enroll_Cust" />
+          <EntitySet Name="tbl_LiftedCustomer" EntityType="Self.tbl_LiftedCustomer" />
+          <EntitySet Name="tbl_MonthlyPayment" EntityType="Self.tbl_MonthlyPayment" />
+          <AssociationSet Name="FK__tbl_Enrol__Chitt__38996AB5" Association="Self.FK__tbl_Enrol__Chitt__38996AB5">
+            <End Role="tbl_Chitti" EntitySet="tbl_Chitti" />
+            <End Role="tbl_Enroll_Cust" EntitySet="tbl_Enroll_Cust" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Lifte__Chitt__440B1D61" Association="Self.FK__tbl_Lifte__Chitt__440B1D61">
+            <End Role="tbl_Chitti" EntitySet="tbl_Chitti" />
+            <End Role="tbl_LiftedCustomer" EntitySet="tbl_LiftedCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Month__Chitt__48CFD27E" Association="Self.FK__tbl_Month__Chitt__48CFD27E">
+            <End Role="tbl_Chitti" EntitySet="tbl_Chitti" />
+            <End Role="tbl_MonthlyPayment" EntitySet="tbl_MonthlyPayment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Enrol__Cust___37A5467C" Association="Self.FK__tbl_Enrol__Cust___37A5467C">
+            <End Role="tbl_Cust" EntitySet="tbl_Cust" />
+            <End Role="tbl_Enroll_Cust" EntitySet="tbl_Enroll_Cust" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Lifte__Cust___4316F928" Association="Self.FK__tbl_Lifte__Cust___4316F928">
+            <End Role="tbl_Cust" EntitySet="tbl_Cust" />
+            <End Role="tbl_LiftedCustomer" EntitySet="tbl_LiftedCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Month__Cust___47DBAE45" Association="Self.FK__tbl_Month__Cust___47DBAE45">
+            <End Role="tbl_Cust" EntitySet="tbl_Cust" />
+            <End Role="tbl_MonthlyPayment" EntitySet="tbl_MonthlyPayment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Lifte__Enrol__4222D4EF" Association="Self.FK__tbl_Lifte__Enrol__4222D4EF">
+            <End Role="tbl_Enroll_Cust" EntitySet="tbl_Enroll_Cust" />
+            <End Role="tbl_LiftedCustomer" EntitySet="tbl_LiftedCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_Month__Enrol__46E78A0C" Association="Self.FK__tbl_Month__Enrol__46E78A0C">
+            <End Role="tbl_Enroll_Cust" EntitySet="tbl_Enroll_Cust" />
+            <End Role="tbl_MonthlyPayment" EntitySet="tbl_MonthlyPayment" />
+          </AssociationSet>
+          <FunctionImport Name="Pro_InsertChit">
+            <Parameter Name="c_value" Mode="In" Type="Decimal" />
+            <Parameter Name="months" Mode="In" Type="Byte" />
+            <Parameter Name="instl_amt" Mode="In" Type="Decimal" />
+            <Parameter Name="c_type" Mode="In" Type="String" />
+            <Parameter Name="members" Mode="In" Type="Int32" />
+            <Parameter Name="payableAmt" Mode="In" Type="Decimal" />
+            <Parameter Name="auctionAmt" Mode="In" Type="Decimal" />
+            <Parameter Name="commAmt" Mode="In" Type="Decimal" />
+            <Parameter Name="dateAuction" Mode="In" Type="DateTime" />
+            <Parameter Name="datestart" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Pro_InsertCust">
+            <Parameter Name="Cust_name" Mode="In" Type="String" />
+            <Parameter Name="surname" Mode="In" Type="String" />
+            <Parameter Name="father" Mode="In" Type="String" />
+            <Parameter Name="gender" Mode="In" Type="String" />
+            <Parameter Name="addr" Mode="In" Type="String" />
+            <Parameter Name="mob1" Mode="In" Type="Int64" />
+            <Parameter Name="mob2" Mode="In" Type="Int64" />
+            <Parameter Name="refBy" Mode="In" Type="String" />
+            <Parameter Name="refMob" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="tbl_Users" EntityType="RNM_CHITFUNDModel.tbl_Users" />
+          <FunctionImport Name="Pro_DuePayment_Cust_List_ByMonthYear" ReturnType="Collection(RNM_CHITFUNDModel.Pro_DuePayment_Cust_List_ByMonthYear_Result)">
+            <Parameter Name="chitti_Id" Mode="In" Type="String" />
+            <Parameter Name="MonthOfPament" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Pro_GetChittiSchemeByID" ReturnType="Collection(RNM_CHITFUNDModel.Pro_GetChittiSchemeByID_Result)">
+          <Parameter Name="chit_ID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Pro_InsertEnrollScheme">
+            <Parameter Name="Cust_ID" Mode="In" Type="String" />
+            <Parameter Name="Chitt_ID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pro_InsertLiftedCustomer">
+            <Parameter Name="enrolId" Mode="In" Type="Int32" />
+            <Parameter Name="custId" Mode="In" Type="String" />
+            <Parameter Name="chitiId" Mode="In" Type="String" />
+            <Parameter Name="liftedDate" Mode="In" Type="DateTime" />
+            <Parameter Name="paidAmount" Mode="In" Type="Decimal" />
+            <Parameter Name="surity" Mode="In" Type="String" />
+            <Parameter Name="witness1" Mode="In" Type="String" />
+            <Parameter Name="witness2" Mode="In" Type="String" />
+            <Parameter Name="modeofPay" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Pro_RegisterUser">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="surname" Mode="In" Type="String" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="Int64" />
+            <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Pro_UpdateChit">
+            <Parameter Name="chit_ID" Mode="In" Type="String" />
+            <Parameter Name="c_value" Mode="In" Type="Decimal" />
+            <Parameter Name="months" Mode="In" Type="Byte" />
+            <Parameter Name="instl_amt" Mode="In" Type="Decimal" />
+            <Parameter Name="c_type" Mode="In" Type="String" />
+            <Parameter Name="members" Mode="In" Type="Int32" />
+            <Parameter Name="payableAmt" Mode="In" Type="Decimal" />
+            <Parameter Name="auctionAmt" Mode="In" Type="Decimal" />
+            <Parameter Name="commAmt" Mode="In" Type="Decimal" />
+            <Parameter Name="dateAuction" Mode="In" Type="DateTime" />
+            <Parameter Name="datestart" Mode="In" Type="DateTime" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="tbl_Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="Int64" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="Pro_DuePayment_Cust_List_ByMonthYear_Result">
+          <Property Type="Int32" Name="Enroll_ID" Nullable="false" />
+          <Property Type="String" Name="Cust_ID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Cust_Name" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Pro_GetChittiSchemeByID_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Chitt_ID" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="Chitt_Value" Nullable="false" Precision="19" />
+          <Property Type="String" Name="Chitt_Type" Nullable="false" MaxLength="50" />
+          <Property Type="Byte" Name="Months" Nullable="true" />
+          <Property Type="Int32" Name="Members" Nullable="true" />
+          <Property Type="Decimal" Name="Installmt_Amt" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="Auction_Amt" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="Payable_Amt" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="Commission_Amt" Nullable="true" Precision="19" />
+          <Property Type="String" Name="DateOfAuction" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DateOfStart" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DateOfEnd" Nullable="true" MaxLength="20" />
+          <Property Type="Byte" Name="Members_Count_For_Chitti" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RNM_CHITFUNDModelStoreContainer" CdmEntityContainer="RNM_CHITFUNDEntities">
+          <EntitySetMapping Name="tbl_Chitti">
+            <EntityTypeMapping TypeName="RNM_CHITFUNDModel.tbl_Chitti">
+              <MappingFragment StoreEntitySet="tbl_Chitti">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Chitt_ID" ColumnName="Chitt_ID" />
+                <ScalarProperty Name="Chitt_Value" ColumnName="Chitt_Value" />
+                <ScalarProperty Name="Months" ColumnName="Months" />
+                <ScalarProperty Name="Installmt_Amt" ColumnName="Installmt_Amt" />
+                <ScalarProperty Name="Chitt_Type" ColumnName="Chitt_Type" />
+                <ScalarProperty Name="Members" ColumnName="Members" />
+                <ScalarProperty Name="Payable_Amt" ColumnName="Payable_Amt" />
+                <ScalarProperty Name="Auction_Amt" ColumnName="Auction_Amt" />
+                <ScalarProperty Name="Commission_Amt" ColumnName="Commission_Amt" />
+                <ScalarProperty Name="DateOfAuction" ColumnName="DateOfAuction" />
+                <ScalarProperty Name="DateOfStart" ColumnName="DateOfStart" />
+                <ScalarProperty Name="DateOfEnd" ColumnName="DateOfEnd" />
+                <ScalarProperty Name="Members_Count_For_Chitti" ColumnName="Members_Count_For_Chitti" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Cust">
+            <EntityTypeMapping TypeName="RNM_CHITFUNDModel.tbl_Cust">
+              <MappingFragment StoreEntitySet="tbl_Cust">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Cust_ID" ColumnName="Cust_ID" />
+                <ScalarProperty Name="Cust_Name" ColumnName="Cust_Name" />
+                <ScalarProperty Name="Cust_Surname" ColumnName="Cust_Surname" />
+                <ScalarProperty Name="Cust_Father" ColumnName="Cust_Father" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Addres" ColumnName="Addres" />
+                <ScalarProperty Name="Mobile_1" ColumnName="Mobile_1" />
+                <ScalarProperty Name="Mobile_2" ColumnName="Mobile_2" />
+                <ScalarProperty Name="Photo_path" ColumnName="Photo_path" />
+                <ScalarProperty Name="Refer_By" ColumnName="Refer_By" />
+                <ScalarProperty Name="Refer_Mobile" ColumnName="Refer_Mobile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Enroll_Cust">
+            <EntityTypeMapping TypeName="RNM_CHITFUNDModel.tbl_Enroll_Cust">
+              <MappingFragment StoreEntitySet="tbl_Enroll_Cust">
+                <ScalarProperty Name="Enroll_ID" ColumnName="Enroll_ID" />
+                <ScalarProperty Name="Cust_ID" ColumnName="Cust_ID" />
+                <ScalarProperty Name="Chitt_ID" ColumnName="Chitt_ID" />
+                <ScalarProperty Name="IsLifted" ColumnName="IsLifted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_LiftedCustomer">
+            <EntityTypeMapping TypeName="RNM_CHITFUNDModel.tbl_LiftedCustomer">
+              <MappingFragment StoreEntitySet="tbl_LiftedCustomer">
+                <ScalarProperty Name="Enroll_ID" ColumnName="Enroll_ID" />
+                <ScalarProperty Name="Cust_ID" ColumnName="Cust_ID" />
+                <ScalarProperty Name="Chitt_ID" ColumnName="Chitt_ID" />
+                <ScalarProperty Name="Lifted_Date" ColumnName="Lifted_Date" />
+                <ScalarProperty Name="Paid_Amt" ColumnName="Paid_Amt" />
+                <ScalarProperty Name="Surity" ColumnName="Surity" />
+                <ScalarProperty Name="Witness1" ColumnName="Witness1" />
+                <ScalarProperty Name="Witness2" ColumnName="Witness2" />
+                <ScalarProperty Name="ModeOfPayment" ColumnName="ModeOfPayment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_MonthlyPayment">
+            <EntityTypeMapping TypeName="RNM_CHITFUNDModel.tbl_MonthlyPayment">
+              <MappingFragment StoreEntitySet="tbl_MonthlyPayment">
+                <ScalarProperty Name="MonthOfPament" ColumnName="MonthOfPament" />
+                <ScalarProperty Name="Enroll_ID" ColumnName="Enroll_ID" />
+                <ScalarProperty Name="Cust_ID" ColumnName="Cust_ID" />
+                <ScalarProperty Name="Chitt_ID" ColumnName="Chitt_ID" />
+                <ScalarProperty Name="Recieved_Amt" ColumnName="Recieved_Amt" />
+                <ScalarProperty Name="Due_Amt" ColumnName="Due_Amt" />
+                <ScalarProperty Name="Recieved_Date" ColumnName="Recieved_Date" />
+                <ScalarProperty Name="ModeOfPayment" ColumnName="ModeOfPayment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Pro_InsertChit" FunctionName="RNM_CHITFUNDModel.Store.Pro_InsertChit" />
+          <FunctionImportMapping FunctionImportName="Pro_InsertCust" FunctionName="RNM_CHITFUNDModel.Store.Pro_InsertCust" />
+          <EntitySetMapping Name="tbl_Users">
+            <EntityTypeMapping TypeName="RNM_CHITFUNDModel.tbl_Users">
+              <MappingFragment StoreEntitySet="tbl_Users">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Pro_DuePayment_Cust_List_ByMonthYear" FunctionName="RNM_CHITFUNDModel.Store.Pro_DuePayment_Cust_List_ByMonthYear">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RNM_CHITFUNDModel.Pro_DuePayment_Cust_List_ByMonthYear_Result">
+                <ScalarProperty Name="Enroll_ID" ColumnName="Enroll_ID" />
+                <ScalarProperty Name="Cust_ID" ColumnName="Cust_ID" />
+                <ScalarProperty Name="Cust_Name" ColumnName="Cust_Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Pro_GetChittiSchemeByID" FunctionName="RNM_CHITFUNDModel.Store.Pro_GetChittiSchemeByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RNM_CHITFUNDModel.Pro_GetChittiSchemeByID_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Chitt_ID" ColumnName="Chitt_ID" />
+                <ScalarProperty Name="Chitt_Value" ColumnName="Chitt_Value" />
+                <ScalarProperty Name="Chitt_Type" ColumnName="Chitt_Type" />
+                <ScalarProperty Name="Months" ColumnName="Months" />
+                <ScalarProperty Name="Members" ColumnName="Members" />
+                <ScalarProperty Name="Installmt_Amt" ColumnName="Installmt_Amt" />
+                <ScalarProperty Name="Auction_Amt" ColumnName="Auction_Amt" />
+                <ScalarProperty Name="Payable_Amt" ColumnName="Payable_Amt" />
+                <ScalarProperty Name="Commission_Amt" ColumnName="Commission_Amt" />
+                <ScalarProperty Name="DateOfAuction" ColumnName="DateOfAuction" />
+                <ScalarProperty Name="DateOfStart" ColumnName="DateOfStart" />
+                <ScalarProperty Name="DateOfEnd" ColumnName="DateOfEnd" />
+                <ScalarProperty Name="Members_Count_For_Chitti" ColumnName="Members_Count_For_Chitti" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Pro_InsertEnrollScheme" FunctionName="RNM_CHITFUNDModel.Store.Pro_InsertEnrollScheme" />
+          <FunctionImportMapping FunctionImportName="pro_InsertLiftedCustomer" FunctionName="RNM_CHITFUNDModel.Store.pro_InsertLiftedCustomer" />
+          <FunctionImportMapping FunctionImportName="Pro_RegisterUser" FunctionName="RNM_CHITFUNDModel.Store.Pro_RegisterUser" />
+          <FunctionImportMapping FunctionImportName="Pro_UpdateChit" FunctionName="RNM_CHITFUNDModel.Store.Pro_UpdateChit" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

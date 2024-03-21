@@ -1,0 +1,95 @@
+﻿@model IEnumerable<RNM_CHITFUND.Models.tbl_Chitti>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 align="center">:: Chitti Schemes List ::</h2>
+<hr />
+
+<div>
+    <div>
+        <div class="row">
+            <div class="col-lg-6">
+                <p>
+                    @Html.ActionLink("New Scheme", "Create", null, new { @class = "btn btn-success" })
+                </p>
+            </div>
+            <div align="end" class="col-lg-6">
+          
+            </div>
+        </div>
+    </div>
+    <table class="table">
+        <tr class="bg-primary">
+            <th>
+                @Html.DisplayName("Scheme Code")
+            </th>
+            <th>
+                @Html.DisplayName("Value")
+            </th>
+            <th>
+                @Html.DisplayName("Months")
+            </th>
+            <th>
+                @Html.DisplayName("Installment")
+            </th>
+            <th>
+                @Html.DisplayName("Type")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Members)
+            </th>
+            <th>
+                @Html.DisplayName("Start Date")
+            </th>
+            <th>
+                @Html.DisplayName("End Date")
+            </th>
+            <th>
+                @Html.DisplayName("Enroll Count")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Chitt_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Chitt_Value)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Months)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Installmt_Amt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Chitt_Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Members)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfStart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfEnd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Members_Count_For_Chitti)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Chitt_ID }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Details", "GetDetails", new { id = item.Chitt_ID }, new { @class = "btn btn-success" })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

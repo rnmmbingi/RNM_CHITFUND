@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ce6de400d8434fbd97b88774da5a35b5" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="RNM_CHITFUNDModel.tbl_Chitti" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RNM_CHITFUNDModel.tbl_Cust" Width="1.5" PointX="10.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RNM_CHITFUNDModel.tbl_Enroll_Cust" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RNM_CHITFUNDModel.tbl_LiftedCustomer" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="RNM_CHITFUNDModel.tbl_MonthlyPayment" Width="1.5" PointX="8.25" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="RNM_CHITFUNDModel.FK__tbl_Enrol__Chitt__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="RNM_CHITFUNDModel.FK__tbl_Lifte__Chitt__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="RNM_CHITFUNDModel.FK__tbl_Month__Chitt__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="RNM_CHITFUNDModel.FK__tbl_Enrol__Cust___37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="RNM_CHITFUNDModel.FK__tbl_Lifte__Cust___4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="RNM_CHITFUNDModel.FK__tbl_Month__Cust___47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="RNM_CHITFUNDModel.FK__tbl_Lifte__Enrol__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="RNM_CHITFUNDModel.FK__tbl_Month__Enrol__46E78A0C" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RNM_CHITFUNDModel.tbl_Users" Width="1.5" PointX="0.75" PointY="7.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

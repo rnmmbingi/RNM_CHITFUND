@@ -1,0 +1,191 @@
+﻿
+
+@model RNM_CHITFUND.ViewModels.EnrollCustListVM
+
+@{
+    ViewBag.Title = "Payment";
+}
+
+<h3 align="center">:: Customer Payment ::</h3>
+
+<div>
+    <div class="row">
+        <div class="col-lg-6">
+            @Html.ActionLink("Payment List", "PaymentList", null, new { @class = "btn btn-primary" })
+        </div>
+        <div class="col-lg-6" align="end">            
+        </div>
+    </div>
+    <hr />
+</div>
+              
+    @using (Html.BeginForm("MonthlyPayment", "Payment", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+
+    @{
+        string str = null;
+        if (TempData["ErrorMsg"] != null)
+        {
+            str = TempData["ErrorMsg"].ToString();
+        }
+
+    }
+    <p class="text-danger">@str</p>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        @Html.Label("Chitti Scheme ID", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Chitt_ID, Model.ChittiSchemes, "Select Scheme", htmlAttributes: new { @class = "form-control", @onchange = "getCustomers(this.value)", @id = "SchemeDrop" })
+            @Html.ValidationMessageFor(model => model.Chitt_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Customer", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.EnrollCustList.Enroll_ID, Model.CustomersList, "Select Customer", htmlAttributes: new { @class = "form-control", @onchange = "getDueAmount(this.value)", @id = "customerDropdown", @disabled = true, @required=true })
+            @Html.ValidationMessageFor(model => model.EnrollCustList.Enroll_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Montyhly Amount", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.MontyhlyAmount, htmlAttributes: new { @class = "form-control", @placeholder = "Amount" })
+            @Html.ValidationMessageFor(model => model.MontyhlyAmount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Due Amount", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Due_Amt, htmlAttributes: new { @class = "form-control", @placeholder = "Amount", @id = "txtdueAmount" })
+            @Html.ValidationMessageFor(model => model.Due_Amt, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Mode of Payment", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.ModeOfPayment, new List<SelectListItem>
+                    {
+                         new SelectListItem{ Text="By Cash", Value = "Cash" },
+                         new SelectListItem{ Text="By Cash + UPI", Value = "Cash+UPI" },
+                         new SelectListItem{ Text="By UPI", Value = "UPI" },
+                         new SelectListItem{ Text="By Transfer", Value = "Transfer" },
+
+                    }, "Select Mode Payment", new { @class = "form-control form-select" })
+
+            @Html.ValidationMessageFor(model => model.ModeOfPayment, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Month Of Payment", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.MonthOfPayment, new List<SelectListItem>
+                    {
+                         new SelectListItem{ Text="JAN", Value = "01" },
+                         new SelectListItem{ Text="FEB", Value = "02" },
+                         new SelectListItem{ Text="MAR", Value = "03" },
+                         new SelectListItem{ Text="APR", Value = "04" },
+                         new SelectListItem{ Text="MAY", Value = "05" },
+                         new SelectListItem{ Text="JUN", Value = "06" },
+                         new SelectListItem{ Text="JUL", Value = "07" },
+                         new SelectListItem{ Text="AUG", Value = "08" },
+                         new SelectListItem{ Text="SEP", Value = "09" },
+                         new SelectListItem{ Text="OCT", Value = "10" },
+                         new SelectListItem{ Text="NOV", Value = "11" },
+                         new SelectListItem{ Text="DEC", Value = "12" }
+
+                    }, "Select Month", new { @class = "form-control form-select" })
+            @Html.ValidationMessageFor(model => model.MonthOfPayment, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Year Of Payment", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.YearOfPayment, new List<SelectListItem>
+                    {
+                         new SelectListItem{ Text="2023", Value = "2023" },
+                         new SelectListItem{ Text="2024", Value = "2024" },
+                         new SelectListItem{ Text="2025", Value = "2025" },
+                         new SelectListItem{ Text="2026", Value = "2026" },
+                         new SelectListItem{ Text="2027", Value = "2027" },
+                         new SelectListItem{ Text="2028", Value = "2028" },
+                         new SelectListItem{ Text="2029", Value = "2029" },
+                         new SelectListItem{ Text="2030", Value = "2030" }
+                    }, "Select Year", new { @class = "form-control form-select" })
+            @Html.ValidationMessageFor(model => model.YearOfPayment, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Pay" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+    }
+
+    <div>
+        @*@Html.ActionLink("Back to List", "Index")*@
+    </div>
+    <script>
+
+    function getCustomers(schemeId) {
+        var url = '@Url.Action("GetCustomers", "Payment")';
+            $('#customerDropdown').prop('disabled', false);
+        $.ajax({
+            url: url,
+            type: 'POST',
+            dataType: 'json',
+            data: { schemeId: schemeId },
+            success: function (customers) {
+                var markup = "<option value='0'>Select Customer</option>";
+                for (var x = 0; x < customers.length; x++) {
+                    markup += '<option value="' + customers[x].Value + '">' + customers[x].Text + '</option>';
+
+                }
+
+                $('#customerDropdown').html(markup).show();
+            },
+
+            error: function (response) {
+                alert("error:" + response);
+            }
+        });
+    }
+    function getDueAmount(custId) {
+        var url = '@Url.Action("GetDueAmount", "Payment")';            
+        $.ajax({
+            url: url,
+            type: 'POST',
+            dataType: 'json',
+            data: { custId: custId },
+            success: function (dueAmt) {
+                if (dueAmt != null || dueAmt !=0) {
+                    $('#txtdueAmount').val(dueAmt);  // It's definitely doing this
+                }
+                else {
+                    $('#txtdueAmount').val('');
+                }
+            },
+            error: function (response) {
+                alert("error:" + response);
+            }
+        });
+    }
+    </script>
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+

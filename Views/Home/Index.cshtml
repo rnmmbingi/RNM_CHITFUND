@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<h2 class="text-white" align="center"><b> Welcome to RNM Chit Fund</b></h2>
+<div>
+    @{ Html.RenderPartial("_Slider"); }
+</div>
+<br />
+
+<div class="jumbotron bg-div">
+    
+    <p class="text-white">
+        A chit fund, also known as a chit scheme or chitty, is a type of financial arrangement or savings scheme that is commonly
+        found in many parts of the world, particularly in India.<br />
+        It operates as a rotating savings and credit association among a group of individuals, typically friends, family members,
+        or members of a community or organization.
+    </p>
+    <p>
+        @Html.ActionLink("Know more >>", "About", "Home", null, new { @class = "btn btn-primary btn-lg" })
+
+    </p>
+</div>
+
+
+<div class="container-fluid row">
+    <div class="col-md-4 bg-home-div-card">
+        <h3>Scheme Details </h3>
+        <p>
+            A chit fund scheme begins with the formation of a group of individuals who are willing to participate.
+            This group can consist of friends, family members, colleagues, or members of a community or organization.
+        </p>
+        <p><a class="btn btn-default" href="">Know more &raquo;</a></p>
+    </div>
+    <div class="col-md-4 bg-home-div-card">
+        <h3>Auction Process</h3>
+        <p>
+            In each period (usually monthly), one member of the group is chosen through a process known as an auction.
+            The auction can be a random draw, bidding, or some other method.
+        </p>
+        <p><a class="btn btn-default" href="">Know more &raquo;</a></p>
+    </div>
+    <div class="col-md-4 bg-home-div-card">
+        <h3>Terms and Conditions</h3>
+        <p>
+            Participants should carefully review and understand all the terms and conditions before joining a chit fund scheme.
+        </p>
+        <p><a class="btn btn-default" href="">Know more &raquo;</a></p>
+    </div>
+</div>
